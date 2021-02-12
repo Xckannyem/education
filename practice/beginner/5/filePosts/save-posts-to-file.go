@@ -36,7 +36,7 @@ func bufSave(file string, p Post)  {
 	// Create an output stream via a buffer.
 	writer := bufio.NewWriter(f)
 
-	_, err = writer.Write([]byte(fmt.Sprintf("%+v\n", p)))
+	_, err = writer.Write([]byte(fmt.Sprintf("%+v\n", p)))  // Write struct to a file by saving the keys.*
 	if err != nil {
 		panic(err)
 	}
