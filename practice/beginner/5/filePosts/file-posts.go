@@ -9,13 +9,13 @@ import (
 
 type Post struct {
 	UserId int    `json:"userId"`
-	Id     int 	  `json:"id"`
+	Id     int    `json:"id"`
 	Title  string `json:"title"`
 	Body   string `json:"body"`
 }
 
 type postId []struct{
-	Id     int 	  `json:"id"`
+	Id     int    `json:"id"`
 }
 
 func GetPostById(id int) *Post {
