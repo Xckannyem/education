@@ -3,6 +3,7 @@ package filePosts
 import (
 	"bufio"
 	"encoding/json"
+	"fmt"
 	"os"
 	"strconv"
 	"sync"
@@ -16,15 +17,15 @@ const (
 
 func savePostToFile(i int, post Post)  {
 	preSavePost()
-	postByte, err := json.Marshal(post)  // Allow to save keys from structure Post.
+	_, err := json.Marshal(post)  // Allow to save keys from structure Post.
 	if err != nil {
 		panic(err)
 	}
 	file := pathPostsInDir + "/" + strconv.Itoa(i) + ".txt"
-	bufSave(file, postByte)
+	bufSave(file, post)
 }
 
-func bufSave(file string, postByte []byte)  {
+func bufSave(file string, p Post)  {
 	f, err := os.Create(file)
 	if err != nil {
 		panic(err)
@@ -35,7 +36,7 @@ func bufSave(file string, postByte []byte)  {
 	// Create an output stream via a buffer.
 	writer := bufio.NewWriter(f)
 
-	_, err = writer.Write(postByte)
+	_, err = writer.Write([]byte(fmt.Sprintf("%+v\n", p)))
 	if err != nil {
 		panic(err)
 	}
