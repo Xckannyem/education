@@ -58,7 +58,7 @@ func main()  {
 	json.Unmarshal(bodyBytes, &postIdStruct)
 
 	for postStruct := range postIdStruct {
-		go getPost(postStruct)
+		go getPostById(postStruct)
 	}
 	var input string
 	fmt.Scanln(&input)
